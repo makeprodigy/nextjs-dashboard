@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProtectedPage from "@/components/ProtectedPage";
 
 const orders = [
@@ -52,13 +52,45 @@ const statusColors: Record<string, string> = {
   Cancelled: "bg-red-100 text-red-800",
 };
 
+const statusOptions = [
+  "All",
+  "Pending",
+  "Preparing",
+  "Out for Delivery",
+  "Delivered",
+  "Cancelled",
+];
+
 export default function OrdersPage() {
+  const [filter, setFilter] = useState("All");
+  const filteredOrders =
+    filter === "All"
+      ? orders
+      : orders.filter((order) => order.status === filter);
+
   return (
     <ProtectedPage>
       <div>
         <h1 className="text-2xl font-bold mb-6">Pizza Orders</h1>
+        <div className="mb-6 flex items-center gap-3">
+          <label htmlFor="status-filter" className="font-medium text-gray-700">
+            Filter by status:
+          </label>
+          <select
+            id="status-filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            {statusOptions.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {orders.map((order) => (
+          {filteredOrders.map((order) => (
             <div
               key={order.id}
               className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md transition-shadow"
@@ -75,6 +107,11 @@ export default function OrdersPage() {
               </div>
             </div>
           ))}
+          {filteredOrders.length === 0 && (
+            <div className="col-span-full text-center text-gray-500 py-8">
+              No orders found for this status.
+            </div>
+          )}
         </div>
       </div>
     </ProtectedPage>
