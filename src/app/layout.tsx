@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import AuthNav from "@/components/AuthNav";
+import NextAuthSessionProvider from "@/components/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,22 +30,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-white border-b shadow-sm sticky top-0 z-50">
-          <nav className="container mx-auto flex items-center justify-between py-4 px-4 md:px-0">
-            <div className="flex items-center gap-6">
-              <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                Dashboard
-              </Link>
-              <Link href="/orders" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Pizza Orders
-              </Link>
-            </div>
-            {/* Auth buttons will go here later */}
-          </nav>
-        </header>
-        <main className="container mx-auto px-4 md:px-0 py-8">
-          {children}
-        </main>
+        <NextAuthSessionProvider>
+          <header className="bg-white border-b shadow-sm sticky top-0 z-50">
+            <nav className="container mx-auto flex items-center justify-between py-4 px-4 md:px-0">
+              <div className="flex items-center gap-6">
+                <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                  Dashboard
+                </Link>
+                <Link href="/orders" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  Pizza Orders
+                </Link>
+              </div>
+              <AuthNav />
+            </nav>
+          </header>
+          <main className="container mx-auto px-4 md:px-0 py-8">
+            {children}
+          </main>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
