@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <ProtectedPage>
-      <div className="relative flex flex-col items-center justify-center min-h-[60vh] text-center mx-4 sm:mx-auto bg-gradient-to-br from-slate-900/80 via-blue-900/80 to-blue-600/80 rounded-2xl shadow-lg backdrop-blur-md overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center min-h-[60vh] text-center mx-4 sm:mx-auto bg-gradient-to-br from-slate-900/60 via-blue-900/60 to-blue-600/60 rounded-2xl shadow-lg backdrop-blur-md overflow-hidden">
         {/* Texture overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay" aria-hidden="true">
           <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">

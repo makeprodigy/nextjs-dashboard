@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <nav className="w-full flex items-center justify-between py-4 px-4 relative bg-gradient-to-r from-slate-900 via-blue-900 to-blue-600">
-      <Link href="/" className="text-2xl font-extrabold text-white hover:text-blue-200 transition-colors">
+      <Link href="/" className="text-2xl font-extrabold text-white hover:text-blue-200 transition-colors font-montserrat">
         Dashboard
       </Link>
       <div className="hidden md:flex items-center gap-6">
