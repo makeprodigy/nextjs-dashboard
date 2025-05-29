@@ -1,7 +1,7 @@
 # Next.js Dashboard Assignment
 
 ## Author
-Your Name Here
+Pushpendra Singh Parihar
 
 ## Overview
 A modern, responsive dashboard built with Next.js, Tailwind CSS, and NextAuth.js (Google OAuth). Features protected routes, a personalized greeting, and a visually appealing pizza orders display. Built as part of a Frontend AI Engineer assignment.
