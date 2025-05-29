@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Dashboard Assignment
+
+## Author
+Your Name Here
+
+## Overview
+A modern, responsive dashboard built with Next.js, Tailwind CSS, and NextAuth.js (Google OAuth). Features protected routes, a personalized greeting, and a visually appealing pizza orders display. Built as part of a Frontend AI Engineer assignment.
+
+## Tech Stack
+- **Framework:** Next.js (App Router, TypeScript)
+- **Styling:** Tailwind CSS
+- **Authentication:** NextAuth.js (Google OAuth)
+- **Deployment:** Vercel
+
+## Features
+- Google OAuth sign-in/sign-out
+- Protected dashboard and pizza orders pages
+- Responsive, modern UI with clean navigation
+- Mock pizza orders displayed as cards with status badges
+- Loading and error states handled gracefully
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 1. Clone the Repository
+```sh
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Set Up Google OAuth Credentials
+- Go to [Google Cloud Console](https://console.cloud.google.com/)
+- Create/select a project
+- Enable the **Google People API**
+- Configure the OAuth consent screen
+- Create OAuth credentials (Web application)
+- Add these redirect URIs:
+  - `http://localhost:3000/api/auth/callback/google` (for local dev)
+  - `https://your-vercel-app-url.vercel.app/api/auth/callback/google` (for production)
+- Copy your **Client ID** and **Client Secret**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Configure Environment Variables
+Create a `.env.local` file in the project root:
+```
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-randomly-generated-secret
+```
+- Generate `NEXTAUTH_SECRET` with:
+  ```sh
+  node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+  ```
+- **Never commit your `.env.local` file!**
 
-## Learn More
+### 5. Run Locally
+```sh
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+### 6. Deploy
+- Push your code to GitHub
+- Import your repo on [Vercel](https://vercel.com/)
+- Set the same environment variables in Vercel dashboard (with `NEXTAUTH_URL` set to your deployed URL)
+- Deploy!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Assumptions & Challenges
+- No backend database; pizza orders are hardcoded in the app
+- Only Google OAuth is implemented for authentication
+- Protected routes use a client-side session check for simplicity
+- TypeScript is used for type safety and maintainability
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Third-Party Libraries
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [NextAuth.js](https://next-auth.js.org/)
 
-## Deploy on Vercel
+## How to Improve with TypeScript
+- All data models (e.g., pizza order) are typed for safety
+- Components and hooks use TypeScript interfaces and types for better DX
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT
