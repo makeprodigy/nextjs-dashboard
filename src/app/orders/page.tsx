@@ -62,6 +62,15 @@ const statusOptions = [
   "Cancelled",
 ];
 
+// Add a mapping for border colors by status
+const statusBorderColors: Record<string, string> = {
+  Pending: 'border-l-yellow-700',
+  Preparing: 'border-l-blue-700',
+  'Out for Delivery': 'border-l-orange-700',
+  Delivered: 'border-l-green-700',
+  Cancelled: 'border-l-red-700',
+};
+
 export default function OrdersPage() {
   const [filter, setFilter] = useState("All");
   const filteredOrders =
@@ -72,7 +81,15 @@ export default function OrdersPage() {
   return (
     <ProtectedPage>
       <div>
-        <h1 className="text-2xl font-bold mb-6">Pizza Orders</h1>
+        <h1
+          className="text-3xl font-extrabold mb-6 text-transparent bg-clip-text inline-block"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, #fde047 0%, #60a5fa 25%, #fb923c 50%, #4ade80 75%, #f87171 100%)",
+          }}
+        >
+          Pizza Orders
+        </h1>
         <div className="mb-6 flex items-center gap-3">
           <label htmlFor="status-filter" className="font-medium text-gray-700">
             Filter by status:
@@ -94,17 +111,17 @@ export default function OrdersPage() {
           {filteredOrders.map((order) => (
             <div
               key={order.id}
-              className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md transition-shadow"
+              className={`relative rounded-2xl shadow-lg p-6 flex flex-col gap-3 border border-gray-800 ring-1 ring-slate-700/40 bg-gradient-to-br from-[#151a2c] to-[#0f172a] backdrop-blur-md border-l-8 ${statusBorderColors[order.status]} transition-transform transition-shadow duration-200 hover:scale-[1.025] hover:brightness-110 hover:shadow-2xl`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-lg font-semibold text-gray-900">{order.id}</span>
+                <span className="text-xl font-extrabold text-blue-200 drop-shadow-sm tracking-wide">{order.id}</span>
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColors[order.status]}`}>{order.status}</span>
               </div>
-              <div className="text-gray-700">
-                <div><span className="font-medium">Customer:</span> {order.customer}</div>
-                <div><span className="font-medium">Pizza:</span> {order.pizza}</div>
-                <div><span className="font-medium">Quantity:</span> {order.quantity}</div>
-                <div><span className="font-medium">Order Date:</span> {order.date}</div>
+              <div className="text-gray-100 text-base">
+                <div><span className="font-semibold text-blue-300">Customer:</span> <span className="text-white/90 font-normal">{order.customer}</span></div>
+                <div><span className="font-semibold text-blue-300">Pizza:</span> <span className="text-white/90 font-normal">{order.pizza}</span></div>
+                <div><span className="font-semibold text-blue-300">Quantity:</span> <span className="text-white/90 font-normal">{order.quantity}</span></div>
+                <div><span className="font-semibold text-blue-300">Order Date:</span> <span className="text-white/90 font-normal">{order.date}</span></div>
               </div>
             </div>
           ))}
