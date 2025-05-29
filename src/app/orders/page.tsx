@@ -1,4 +1,5 @@
 import React from "react";
+import ProtectedPage from "@/components/ProtectedPage";
 
 const orders = [
   {
@@ -53,27 +54,29 @@ const statusColors: Record<string, string> = {
 
 export default function OrdersPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Pizza Orders</h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {orders.map((order) => (
-          <div
-            key={order.id}
-            className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md transition-shadow"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-lg font-semibold text-gray-900">{order.id}</span>
-              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColors[order.status]}`}>{order.status}</span>
+    <ProtectedPage>
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Pizza Orders</h1>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {orders.map((order) => (
+            <div
+              key={order.id}
+              className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-lg font-semibold text-gray-900">{order.id}</span>
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColors[order.status]}`}>{order.status}</span>
+              </div>
+              <div className="text-gray-700">
+                <div><span className="font-medium">Customer:</span> {order.customer}</div>
+                <div><span className="font-medium">Pizza:</span> {order.pizza}</div>
+                <div><span className="font-medium">Quantity:</span> {order.quantity}</div>
+                <div><span className="font-medium">Order Date:</span> {order.date}</div>
+              </div>
             </div>
-            <div className="text-gray-700">
-              <div><span className="font-medium">Customer:</span> {order.customer}</div>
-              <div><span className="font-medium">Pizza:</span> {order.pizza}</div>
-              <div><span className="font-medium">Quantity:</span> {order.quantity}</div>
-              <div><span className="font-medium">Order Date:</span> {order.date}</div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </ProtectedPage>
   );
 } 
