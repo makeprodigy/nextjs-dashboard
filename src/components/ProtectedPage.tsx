@@ -7,6 +7,7 @@ export default function ProtectedPage({ children }: { children: React.ReactNode 
   const { status } = useSession();
 
   useEffect(() => {
+    console.log("Session status:", status);
     if (status === "unauthenticated") {
       signIn("google");
     }

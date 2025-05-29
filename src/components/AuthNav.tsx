@@ -24,7 +24,7 @@ export default function AuthNav() {
     <div className="flex items-center gap-3">
       <span className="text-gray-700 font-medium">{session.user?.name}</span>
       <button
-        onClick={() => signOut({ callbackUrl: '/signed-out' })}
+        onClick={() => signOut({ callbackUrl: '/signed-out', redirect: true })}
         className="bg-gray-200 text-gray-800 px-3 py-1 rounded hover:bg-gray-300 transition-colors font-medium"
       >
         Sign out
