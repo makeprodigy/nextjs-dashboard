@@ -11,7 +11,7 @@ export default function ProtectedPage({ children }: { children: React.ReactNode 
   useEffect(() => {
     if (status === "unauthenticated" && !redirecting) {
       setRedirecting(true);
-      signIn("google").catch((err) => {
+      signIn("google").catch(() => {
         setError("Failed to redirect for authentication. Please try again.");
         setRedirecting(false);
       });
