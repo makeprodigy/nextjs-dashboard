@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import ProtectedPage from "@/components/ProtectedPage";
+import { motion } from "framer-motion";
 
 const orders = [
   {
@@ -107,11 +108,23 @@ export default function OrdersPage() {
             ))}
           </select>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredOrders.map((order) => (
-            <div
+        <motion.div
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.08 } },
+          }}
+        >
+          {filteredOrders.map((order, idx) => (
+            <motion.div
               key={order.id}
               className={`relative rounded-2xl shadow-lg p-6 flex flex-col gap-3 border border-gray-800 ring-1 ring-slate-700/40 bg-gradient-to-br from-[#151a2c] to-[#0f172a] backdrop-blur-md border-l-8 ${statusBorderColors[order.status]} transition-transform transition-shadow duration-200 hover:scale-[1.025] hover:brightness-110 hover:shadow-2xl`}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xl font-extrabold text-blue-200 drop-shadow-sm tracking-wide">{order.id}</span>
@@ -123,14 +136,14 @@ export default function OrdersPage() {
                 <div><span className="font-semibold text-blue-300">Quantity:</span> <span className="text-white/90 font-normal">{order.quantity}</span></div>
                 <div><span className="font-semibold text-blue-300">Order Date:</span> <span className="text-white/90 font-normal">{order.date}</span></div>
               </div>
-            </div>
+            </motion.div>
           ))}
           {filteredOrders.length === 0 && (
             <div className="col-span-full text-center text-gray-500 py-8">
               No orders found for this status.
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
     </ProtectedPage>
   );
