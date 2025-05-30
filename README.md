@@ -36,7 +36,7 @@ A modern, responsive dashboard built with Next.js, Tailwind CSS, and NextAuth.js
    - Create OAuth credentials in [Google Cloud Console](https://console.cloud.google.com/)
    - Add redirect URIs:
      - `http://localhost:3000/api/auth/callback/google`
-     - `https://nextjs-dashboard-eta-bice-46.vercel.app/api/auth/callback/google`
+     - `https://<your-vercel-project>.vercel.app/api/auth/callback/google`
    - Copy your **Client ID** and **Client Secret**
 4. **Configure Environment Variables**
    Create a `.env.local` file:
@@ -59,7 +59,7 @@ A modern, responsive dashboard built with Next.js, Tailwind CSS, and NextAuth.js
 ## Deployment
 - Push to GitHub
 - Import repo on [Vercel](https://vercel.com/)
-- Set environment variables in Vercel (set `NEXTAUTH_URL` to `https://nextjs-dashboard-eta-bice-46.vercel.app`)
+- Set environment variables in Vercel (set `NEXTAUTH_URL` to `https://<your-vercel-project>.vercel.app`)
 - Deploy!
 
 ## Notes
