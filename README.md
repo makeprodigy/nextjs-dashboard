@@ -1,7 +1,5 @@
 # Next.js Dashboard Assignment
 
-**Author:** Pushpendra Singh Parihar
-
 ## 🚀 Live Demo
 [https://nextjs-dashboard-eta-bice-46.vercel.app/](https://nextjs-dashboard-eta-bice-46.vercel.app/)
 
